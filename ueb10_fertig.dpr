@@ -7,8 +7,8 @@ program ueb10_fertig;
   - Zuletzt bearbeitet am 12.01.2022
 
   Dieses Programm liest eine Textdatei mit Studentendaten ein. Der Nutzer kann
-  dann gewisse Berechnungen durchführen und diese als neue Datei speichern, oder an eine
-  bestehende Datei dranhängne / diese überschreiben.
+  dann gewisse Berechnungen durchfÃ¼hren und diese als neue Datei speichern, oder an eine
+  bestehende Datei dranhÃ¤ngne / diese Ã¼berschreiben.
 
 }
 
@@ -16,7 +16,7 @@ uses
   SysUtils,
   windows;
 
-// Line Break zur besseren Übersicht!
+// Line Break zur besseren Ãœbersicht!
 const
   sLineBreak = {$IFDEF LINUX} AnsiChar(#10) {$ENDIF}
 {$IFDEF MSWINDOWS} AnsiString(#13#10) {$ENDIF};
@@ -29,10 +29,10 @@ type
     schreibenSchliessenFehler, schreibenErstellenFehler, schreibenHinzufuegenErfolg, schreibenUeberschreibenErfolg);
   TErgebnissAuswertung = (I, A, D, Fehler);
 
-  // Buchstabenmengentyp zur Prüfung ob etwas nur aus Buchstaben besteht.
+  // Buchstabenmengentyp zur PrÃ¼fung ob etwas nur aus Buchstaben besteht.
   setBuchstaben = Set of AnsiChar;
 
-  // Hier einen Record für den Student mit Unterrecords.
+  // Hier einen Record fÃ¼r den Student mit Unterrecords.
   TStudent = record
     MatrNr: record
       kuerzel: string;
@@ -55,7 +55,7 @@ type
     Next: PList;
   end;
 
-  // Globale Variable für den Speicherverbrauch
+  // Globale Variable fÃ¼r den Speicherverbrauch
 var
   speicherverbrauch: integer;
 
@@ -67,7 +67,7 @@ begin
   if SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color) then;
 end;
 
-// Diese Prozedur gibt die den Status des öffnens der Datei aus
+// Diese Prozedur gibt die den Status des Ã¶ffnens der Datei aus
 // @param
 // status: Status des Einlesens der Datei
 procedure writeStatusRead(status: TErgebnissLesen);
@@ -77,17 +77,17 @@ begin
     lesenOeffnenErfolg:
       begin
         setTextColor(10);
-        writeln('Datei erfolgreich geöffnet');
+        writeln('Datei erfolgreich geÃ¶ffnet');
       end;
     lesenOeffnenFehler:
       begin
         setTextColor(12);
-        writeln('Fehler beim Öffnen der Datei');
+        writeln('Fehler beim Ã–ffnen der Datei');
       end;
     lesenSchliessenFehler:
       begin
         setTextColor(12);
-        writeln('Fehler beim Schließen der Datei');
+        writeln('Fehler beim SchlieÃŸen der Datei');
       end;
     lesenSchliessenErfolg:
       begin
@@ -124,12 +124,12 @@ begin
     schreibenSchreibenErfolg:
       begin
         setTextColor(12);
-        writeln('Fehler beim Öffnen der Datei');
+        writeln('Fehler beim Ã–ffnen der Datei');
       end;
     schreibenSchliessenFehler:
       begin
         setTextColor(12);
-        writeln('Fehler beim Schließen der Datei');
+        writeln('Fehler beim SchlieÃŸen der Datei');
       end;
     schreibenSchliessenErfolg:
       begin
@@ -140,13 +140,13 @@ begin
     schreibenUeberschreibenErfolg:
       begin
         setTextColor(10);
-        writeln('Datei erfolgreich überschrieben');
+        writeln('Datei erfolgreich Ã¼berschrieben');
 
       end;
     schreibenHinzufuegenErfolg:
       begin
         setTextColor(10);
-        writeln('Datei erfolgreich angehängt');
+        writeln('Datei erfolgreich angehÃ¤ngt');
 
       end;
     schreibenErstellenFehler:
@@ -169,7 +169,7 @@ begin
     Fehler:
       begin
         setTextColor(12);
-        writeln('Keine gültige Eingabe');
+        writeln('Keine gÃ¼ltige Eingabe');
         setTextColor(7);
       end;
 
@@ -177,7 +177,7 @@ begin
 
 end;
 
-// Diese Funktion wandelt die einzelnen Zeilen der Datei in ein Record um, bzw fügt die
+// Diese Funktion wandelt die einzelnen Zeilen der Datei in ein Record um, bzw fÃ¼gt die
 // Eigenschaften in der Zeile dem Record hinzu
 // @param
 // zeile - Die Zeile, die in einen Record umgewandelt werden soll.
@@ -210,7 +210,7 @@ begin
 
 end;
 
-// Diese Funktion prüft, ob alle Angaben im Record richtig sind
+// Diese Funktion prÃ¼ft, ob alle Angaben im Record richtig sind
 // @param
 // student  - Record mit den Daten eines Students
 // @return
@@ -253,7 +253,7 @@ begin
 
 end;
 
-// Diese Funktion fügt das valide Record eienr Liste hinzu
+// Diese Funktion fÃ¼gt das valide Record eienr Liste hinzu
 // @param
 // First - erstes Element der Liste
 // student - Record des Studenten
@@ -292,7 +292,7 @@ var
 
 begin
   RunPointer := First;
-  writeln('Listeneinträge:');
+  writeln('ListeneintrÃ¤ge:');
   While RunPointer <> nil do
   begin
     writeln;
@@ -304,7 +304,7 @@ begin
   writeln;
 end; { WriteList }
 
-// Diese Prozedur liest die Datei Zeile für Zeile und fügt die Studenten der Liste hinzu
+// Diese Prozedur liest die Datei Zeile fÃ¼r Zeile und fÃ¼gt die Studenten der Liste hinzu
 // @param
 // eingabe - Der Name der Datei, welche eingelesen werden soll
 // datei - die Datei selber
@@ -415,7 +415,7 @@ begin
 end;
 
 // Diese Funktion gibt die Berechnungen aus
-// eingabe - die Eingabe des benutzers, was er berechnet haben möchte
+// eingabe - die Eingabe des benutzers, was er berechnet haben mÃ¶chte
 // First - erstes Element der Liste
 // @return
 // Das berechnete Ergebnis
@@ -427,7 +427,7 @@ begin
       'I':
         begin
 
-          doCalculations := sLineBreak + 'shutdown /p';
+          doCalculations := sLineBreak + 'Die minimale Note ist';
         end;
       'A':
         begin
@@ -455,7 +455,7 @@ begin
 end;
 
 // Diese Prozedur speichert die ausgerechneten Werte entweder in einer vorhandenen Datei und
-// hängt sie dort an, oder es überschreibt den Inhalt der vorhandenen, oder es erstellt eine
+// hÃ¤ngt sie dort an, oder es Ã¼berschreibt den Inhalt der vorhandenen, oder es erstellt eine
 // neue Datei
 // @param
 // auswertungen -  Die erhaltene Auswertung als String
@@ -464,12 +464,12 @@ var
   eingabe, eingabe2: string;
   datei: text;
 begin
-  writeln('In welche Datei möchtest du die Auswertungen schreiben?');
+  writeln('In welche Datei mÃ¶chtest du die Auswertungen schreiben?');
   readln(eingabe);
-  // Wenn die Datei schon existiert, fragen ob anhängen oder neu erstellen
+  // Wenn die Datei schon existiert, fragen ob anhÃ¤ngen oder neu erstellen
   if fileExists(eingabe) then
   begin
-    writeln('Soll an die Datei angehängt (a) oder der Inhalt neu (n) erstellt werden?');
+    writeln('Soll an die Datei angehÃ¤ngt (a) oder der Inhalt neu (n) erstellt werden?');
     readln(eingabe2);
     // Versuchen die Datei zu assignen.
     if length(eingabe2) = 1 then
@@ -584,7 +584,7 @@ begin
   writeln('Bitte den Dateinamen der zu lesenden Datei eingeben:');
   readln(eingabe);
 
-  // Nur ausführen, wenn Datei vorhanden
+  // Nur ausfÃ¼hren, wenn Datei vorhanden
   if fileExists(eingabe) then
   begin
     try
@@ -595,10 +595,10 @@ begin
         // Wenn das nicht klappt, Fehlermeldung ausgeben
       except
         writeStatusRead(lesenOeffnenFehler);
-        raise // Damit der zweite Part mit den Berechnungen nicht durchgeführt wird.
+        raise // Damit der zweite Part mit den Berechnungen nicht durchgefÃ¼hrt wird.
       end;
 
-      // Versuchen die Berechnung durchzuführen und zu schreiben
+      // Versuchen die Berechnung durchzufÃ¼hren und zu schreiben
       try
         writeln('Soll der minimale (I), der maximale (A) oder der Durchschnittswert (D) der Noten berechnet werden?');
         readln(eingabe);
